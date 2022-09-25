@@ -1,0 +1,3 @@
+# OpenCV
+
+Mosaic Generator Project
