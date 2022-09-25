@@ -1,6 +1,8 @@
 import numpy as np
 import argparse
 import cv2
+import os
+from os import listdir
 
 def get_args():
     ap = argparse.ArgumentParser()
@@ -9,7 +11,17 @@ def get_args():
     args = vars(ap.parse_args())
     return args
 
+def load_images_from_folder(folder):
+    images = []
+    for filename in os.listdir(folder):
+        image = cv2.imread(os.path.join(folder, filename))
+        if image is not None:
+            images.append(image)
+    return images
+
 def main():
     args = get_args()
+    source_images = load_images_from_folder(args["source_images"])
+
 
 main()
