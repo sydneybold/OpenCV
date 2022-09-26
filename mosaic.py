@@ -30,11 +30,19 @@ def process_tiles(tiles):
         tiles[i] = resized
     return tiles
 
+def get_avg_color_of_each_tile(tiles):
+    tile_colors = []
+    for image in tiles:
+        avg_color_per_row = np.average(image, axis=0)
+        avg_color = np.average(avg_color_per_row, axis=0)
+        tile_colors.append(avg_color)
+    return tile_colors
+
 def main():
     args = get_args()
     source_images = load_images_from_folder(args["source_images"])
     tiles = process_tiles(source_images)
-    cv2.imshow("Tile", tiles[0])
-    cv2.waitKey(0)
+    title_colors = get_avg_color_of_each_tile(tiles)
+
 
 main()
