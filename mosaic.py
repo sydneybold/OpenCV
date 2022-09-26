@@ -26,12 +26,15 @@ def process_tiles(tiles):
         height = image.shape[0]
         min_dimension = min(width, height)
         cropped = image[(height-min_dimension)//2:(height+min_dimension)//2, (width-min_dimension)//2:(width+min_dimension)//2]
-        tiles[i] = cropped
+        resized = cv2.resize(cropped, (50, 50), interpolation = cv2.INTER_AREA)
+        tiles[i] = resized
     return tiles
 
 def main():
     args = get_args()
     source_images = load_images_from_folder(args["source_images"])
     tiles = process_tiles(source_images)
+    cv2.imshow("Tile", tiles[0])
+    cv2.waitKey(0)
 
 main()
