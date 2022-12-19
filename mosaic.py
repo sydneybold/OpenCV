@@ -95,9 +95,7 @@ def main():
 
     mosaic_tiles = get_mosaic_tiles(image, tiles, tile_size)
     mosaic = build_mosaic(image, mosaic_tiles, tile_size)
-    cv2.imwrite("mosaic.jpg", mosaic)
     cv2.imshow("Mosaic", mosaic)
     cv2.waitKey(0)
-
 
 main()
